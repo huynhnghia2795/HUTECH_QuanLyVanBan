@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLVanBan" Class="DataClassesQLVanBanDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=KEVIN-PC\SQLEXPRESS;Initial Catalog=QLVanBan;Integrated Security=True;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLVanBanConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.DanhMuc" Member="DanhMucs">
+    <Type Name="DanhMuc">
+      <Column Name="DanhMucID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenDanhMuc" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="TenDanhMucKhongDau" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="LFT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RGT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FileVanBan" Member="FileVanBans">
+    <Type Name="FileVanBan">
+      <Column Name="FileID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VanBanID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="FileType" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="FileSize" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ClientFileName" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="ServerFileName" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedUser" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="MapPath" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="PageNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DownloadCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="VanBan_FileVanBan" Member="VanBan" ThisKey="VanBanID" OtherKey="VanBanID" Type="VanBan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VanBan" Member="VanBans">
+    <Type Name="VanBan">
+      <Column Name="VanBanID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="TieuDeKhongDau" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="SoVanBan" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="TomTatNoiDung" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TomTatNoiDungKhongDau" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedUser" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedUser" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="IsPublish" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="GhimLenDau" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="PublishDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="VanBan_FileVanBan" Member="FileVanBans" ThisKey="VanBanID" OtherKey="VanBanID" Type="FileVanBan" />
+    </Type>
+  </Table>
+</Database>
