@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -46,6 +47,40 @@ namespace WebQLVanBan.Controllers
             db.SubmitChanges();
             return RedirectToAction("Danhmuc");
 
+        }
+        [HttpGet]
+        public ActionResult Add()
+        {
+            ViewBag.DanhMucID = new SelectList(db.DanhMucs.ToList().OrderBy(n => n.UpdatedDate), "DanhMucID", "TenDanhMuc");
+            return View();
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Add(DanhMuc g)
+        {
+            db.DanhMucs.InsertOnSubmit(g);
+            db.SubmitChanges();
+            return RedirectToAction("Danhmuc");
+        }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            DanhMuc danhmuc = db.DanhMucs.SingleOrDefault(n => n.DanhMucID == id);
+            if (danhmuc == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            ViewBag.DanhMucID = new SelectList(db.DanhMucs.ToList().OrderBy(n => n.UpdatedDate), "DanhMucID", "TenDanhMuc", danhmuc.DanhMucID);
+            return View(danhmuc);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(DanhMuc g)
+        {
+            UpdateModel(g);
+            db.SubmitChanges();
+            return RedirectToAction("Danhmuc");
         }
     }
 }

@@ -281,6 +281,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\QLVanBan\Danhmuc.cshtml" />
     <Content Include="Views\QLVanBan\Delete.cshtml" />
+    <Content Include="Views\QLVanBan\Add.cshtml" />
+    <Content Include="Views\QLVanBan\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
